@@ -4,7 +4,6 @@ import {colors} from 'Utils';
 import {Poster} from './Poster';
 
 export const Categorie = ({title, movies}) => {
-  console.log('movies', movies);
   return (
     <View>
       <Text style={styles.title}>{title}</Text>
@@ -18,6 +17,7 @@ export const Categorie = ({title, movies}) => {
 const styles = StyleSheet.create({
   title: {
     color: colors.white,
+    fontWeight: 'bold',
   },
   carousel: {
     flexDirection: 'row',

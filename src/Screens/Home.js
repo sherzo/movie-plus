@@ -23,7 +23,7 @@ const Home = () => {
   const categories = [
     {id: '1', title: 'Peliculas estrenos', movies},
     {id: '2', title: 'Recomendadas', movies},
-    {id: '3', title: 'Dragon ball - peliculas', movies},
+    {id: '3', title: 'Dragon Ball - peliculas', movies},
   ];
 
   return (

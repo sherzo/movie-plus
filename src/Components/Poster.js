@@ -1,28 +1,30 @@
 import React from 'react';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-// import FastImage from 'react-native-fast-image';
-import posterExample from 'Assets/img/1.jpg';
+import {StyleSheet, Image, TouchableOpacity, Dimensions} from 'react-native';
+import posterExample from 'Assets/img/3.jpg';
 
-export const Poster = ({id, poster}) => {
+const windowWidth = Dimensions.get('window').width;
+
+export const Poster = ({id, poster, width}) => {
+  const margin = 10;
+  const widthDefault = windowWidth / 3 - margin; // Por defecto 3 peliculas por pantalla
+  const widthPoster = width || widthDefault;
+  const heightPoster = widthPoster + widthPoster * 0.5;
+
   return (
     <TouchableOpacity onPress={() => console.log('hola')} key={id}>
-      <View style={styles.container}>
-        <Image
-          source={posterExample}
-          fadeDuration={1000}
-          style={styles.poster}
-        />
-      </View>
+      <Image
+        fadeDuration={1000}
+        source={posterExample}
+        style={{
+          resizeMode: 'cover',
+          width: widthPoster,
+          height: heightPoster,
+          marginRight: margin,
+          marginBottom: margin,
+        }}
+      />
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 10,
-    marginRight: 10,
-  },
-  poster: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});

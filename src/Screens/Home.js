@@ -1,40 +1,66 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, View, FlatList} from 'react-native';
-import {colors} from 'Utils';
-import {Categorie} from 'Components';
+import React, {useState} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
+import {colors, isCloseToBottom} from 'Utils';
+import {Categorie, Poster} from 'Components';
+import {movies as moviesMock, categories as categoriesMock} from './mock';
 
 const Home = () => {
-  const movies = [
-    {id: '1', poster: '1.jpg'},
-    {id: '2', poster: '2.jpg'},
-    {id: '3', poster: '3.jpg'},
-    {id: '4', poster: '4.jpg'},
-    {id: '5', poster: '4.jpg'},
-    {id: '6', poster: '4.jpg'},
-    {id: '7', poster: '4.jpg'},
-    {id: '8', poster: '4.jpg'},
-    {id: '9', poster: '4.jpg'},
-    {id: '10', poster: '4.jpg'},
-    {id: '11', poster: '4.jpg'},
-    {id: '12', poster: '4.jpg'},
-    {id: '13', poster: '4.jpg'},
-  ];
+  const [movies, setMovies] = useState(moviesMock);
+  const [categories, _] = useState(categoriesMock);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const categories = [
-    {id: '1', title: 'Peliculas estrenos', movies},
-    {id: '2', title: 'Recomendadas', movies},
-    {id: '3', title: 'Dragon Ball - peliculas', movies},
-  ];
+  const generateRandomMovies = (length) =>
+    moviesMock.map((movie, index) => ({
+      ...movie,
+      id: length + index,
+    }));
+
+  const onScroll = ({nativeEvent}) => {
+    if (isCloseToBottom(nativeEvent)) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setMovies([...movies, ...generateRandomMovies(movies.length)]);
+        setIsLoading(false);
+      }, 1000);
+    }
+  };
+
+  const Title = <Text style={styles.title}>Todas las películas</Text>;
+
+  const Loading = (
+    <ActivityIndicator color={colors.white} animating={isLoading} />
+  );
+
+  const itemCategorie = ({item}) => <Categorie {...item} />;
+
+  const itemMovie = ({item}) => <Poster {...item} />;
+
+  const keyExtractor = (item) => item.id.toString();
 
   return (
     <SafeAreaView>
-      <View style={styles.body}>
+      <ScrollView style={styles.scrollView} onScroll={onScroll}>
         <FlatList
           data={categories}
-          renderItem={({item}) => <Categorie {...item} />}
-          keyExtractor={item => item.id}
+          renderItem={itemCategorie}
+          keyExtractor={keyExtractor}
         />
-      </View>
+        <FlatList
+          ListHeaderComponent={Title}
+          numColumns={3}
+          data={movies}
+          renderItem={itemMovie}
+          keyExtractor={keyExtractor}
+          ListFooterComponent={Loading}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -42,13 +68,12 @@ const Home = () => {
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: colors.dark,
-  },
-  body: {
-    backgroundColor: colors.dark,
     padding: 10,
   },
-  CategoriesText: {
+  title: {
     color: colors.white,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 });
 

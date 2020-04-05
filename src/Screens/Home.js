@@ -9,9 +9,12 @@ import {
 } from 'react-native';
 import {colors, isCloseToBottom} from 'Utils';
 import {Categorie, Poster} from 'Components';
-import {movies as moviesMock, categories as categoriesMock} from './mock';
+import {
+  movies as moviesMock,
+  categories as categoriesMock,
+} from '../Utils/mock';
 
-const Home = () => {
+export const Home = () => {
   const [movies, setMovies] = useState(moviesMock);
   const [categories, _] = useState(categoriesMock);
   const [isLoading, setIsLoading] = useState(false);
@@ -76,5 +79,3 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-
-export default Home;

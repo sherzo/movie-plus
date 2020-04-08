@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native';
-import {colors} from 'Utils';
+import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
 import {Poster} from './Poster';
+import {Text} from './Text';
 
 export const Categorie = ({title, movies}) => {
   const windowWidth = Dimensions.get('window').width;
@@ -23,11 +23,9 @@ export const Categorie = ({title, movies}) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 10,
+    marginLeft: 5,
   },
   title: {
-    color: colors.white,
-    fontWeight: 'bold',
     marginBottom: 10,
   },
   carousel: {

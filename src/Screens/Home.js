@@ -1,14 +1,7 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-  Text,
-  ActivityIndicator,
-} from 'react-native';
+import {StyleSheet, FlatList, Text, ActivityIndicator} from 'react-native';
 import {colors, isCloseToBottom} from 'Utils';
-import {Categorie, Poster} from 'Components';
+import {Categorie, Poster, Layout} from 'Components';
 import {
   movies as moviesMock,
   categories as categoriesMock,
@@ -48,29 +41,26 @@ export const Home = () => {
   const keyExtractor = (item) => item.id.toString();
 
   return (
-    <SafeAreaView>
-      <ScrollView style={styles.scrollView} onScroll={onScroll}>
-        <FlatList
-          data={categories}
-          renderItem={itemCategorie}
-          keyExtractor={keyExtractor}
-        />
-        <FlatList
-          ListHeaderComponent={Title}
-          numColumns={3}
-          data={movies}
-          renderItem={itemMovie}
-          keyExtractor={keyExtractor}
-          ListFooterComponent={Loading}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <Layout onScroll={onScroll} style={styles.layout}>
+      <FlatList
+        data={categories}
+        renderItem={itemCategorie}
+        keyExtractor={keyExtractor}
+      />
+      <FlatList
+        ListHeaderComponent={Title}
+        numColumns={3}
+        data={movies}
+        renderItem={itemMovie}
+        keyExtractor={keyExtractor}
+        ListFooterComponent={Loading}
+      />
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: colors.dark,
+  layout: {
     padding: 10,
   },
   title: {
@@ -79,3 +69,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+export default Home;

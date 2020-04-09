@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
-import {StyleSheet, FlatList, Text, ActivityIndicator} from 'react-native';
+import {
+  FlatList,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {colors, isCloseToBottom} from 'Utils';
-import {Categorie, Poster, Layout} from 'Components';
+import {Categorie, Poster, Layout, Header} from 'Components';
 import {
   movies as moviesMock,
   categories as categoriesMock,
@@ -41,32 +47,35 @@ export const Home = () => {
   const keyExtractor = (item) => item.id.toString();
 
   return (
-    <Layout onScroll={onScroll} style={styles.layout}>
-      <FlatList
-        data={categories}
-        renderItem={itemCategorie}
-        keyExtractor={keyExtractor}
-      />
-      <FlatList
-        ListHeaderComponent={Title}
-        numColumns={3}
-        data={movies}
-        renderItem={itemMovie}
-        keyExtractor={keyExtractor}
-        ListFooterComponent={Loading}
-      />
+    <Layout onScroll={onScroll}>
+      <Header />
+      <View style={styles.body}>
+        <FlatList
+          data={categories}
+          renderItem={itemCategorie}
+          keyExtractor={keyExtractor}
+        />
+        <FlatList
+          ListHeaderComponent={Title}
+          numColumns={3}
+          data={movies}
+          renderItem={itemMovie}
+          keyExtractor={keyExtractor}
+          ListFooterComponent={Loading}
+        />
+      </View>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  layout: {
-    padding: 10,
-  },
   title: {
     color: colors.white,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  body: {
+    padding: 10,
   },
 });
 

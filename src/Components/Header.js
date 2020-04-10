@@ -16,6 +16,8 @@ const windowHeight = Dimensions.get('window').height;
 const midHeight = windowHeight / 2.3;
 
 export const Header = () => {
+  const toPage = (page) => () => navigation.navigate(page);
+  const gradient = ['transparent', colors.dark];
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -23,7 +25,7 @@ export const Header = () => {
         style={styles.image}>
         <Toolbar />
 
-        <LinearGradient colors={['transparent', colors.dark]} style={{flex: 1}}>
+        <LinearGradient colors={gradient} style={styles.gradient}>
           <View style={styles.section}>
             <Text style={styles.title}>La casa de papel</Text>
             <View style={styles.buttons}>
@@ -33,13 +35,13 @@ export const Header = () => {
                   <Text>Mi lista</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={toPage('Movie')}>
                 <View style={styles.buttonPlay}>
                   <Icon name="play" color="black" size={22} />
                   <Text style={styles.buttonPlayText}>Reproducir</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={toPage('Movie')}>
                 <View style={styles.button}>
                   <Icon name="information-outline" color="white" size={20} />
                   <Text>Info</Text>
@@ -61,10 +63,14 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
+  gradient: {
+    flex: 1,
+  },
   section: {
     flex: 1,
     paddingHorizontal: 50,
     justifyContent: 'flex-end',
+    marginBottom: 10,
   },
   buttons: {
     flexDirection: 'row',
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 5,
     backgroundColor: colors.white,
-    borderRadius: 2,
+    borderRadius: 2.5,
   },
   buttonPlayText: {
     color: colors.black,

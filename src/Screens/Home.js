@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import {colors, isCloseToBottom} from 'Utils';
-import {Categorie, Poster, Layout, Header} from 'Components';
+import {Categorie, Poster, Layout, Header, Ad, New} from 'Components';
 import {
   movies as moviesMock,
   categories as categoriesMock,
@@ -15,6 +15,7 @@ import {
 
 export const Home = () => {
   const [movies, setMovies] = useState(moviesMock);
+  const [news, setNews] = useState(moviesMock);
   const [categories, _] = useState(categoriesMock);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,6 +43,8 @@ export const Home = () => {
 
   const itemCategorie = ({item}) => <Categorie {...item} />;
 
+  const itemNew = ({item}) => <New {...item} />;
+
   const itemMovie = ({item}) => <Poster {...item} />;
 
   const keyExtractor = (item) => item.id.toString();
@@ -49,7 +52,18 @@ export const Home = () => {
   return (
     <Layout onScroll={onScroll}>
       <Header />
+      <Ad />
       <View style={styles.body}>
+        <View style={{paddingVertical: 5}}>
+          <Text style={styles.title}>Lo mas nuevo</Text>
+          <FlatList
+            data={news}
+            renderItem={itemNew}
+            keyExtractor={keyExtractor}
+            horizontal={true}
+          />
+        </View>
+
         <FlatList
           data={categories}
           renderItem={itemCategorie}
@@ -71,7 +85,6 @@ export const Home = () => {
 const styles = StyleSheet.create({
   title: {
     color: colors.white,
-    fontWeight: 'bold',
     marginBottom: 10,
   },
   body: {

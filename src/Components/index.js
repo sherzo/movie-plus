@@ -6,3 +6,4 @@ export * from './Button';
 export * from './Header';
 export * from './Toolbar';
 export * from './Ad';
+export * from './New';

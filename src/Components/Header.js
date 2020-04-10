@@ -11,13 +11,18 @@ import {Toolbar} from './Toolbar';
 import {colors} from 'Utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height;
 const midHeight = windowHeight / 2.3;
 
 export const Header = () => {
+  const navigation = useNavigation();
+
   const toPage = (page) => () => navigation.navigate(page);
+
   const gradient = ['transparent', colors.dark];
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -29,7 +34,7 @@ export const Header = () => {
           <View style={styles.section}>
             <Text style={styles.title}>La casa de papel</Text>
             <View style={styles.buttons}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={toPage('MyList')}>
                 <View style={styles.button}>
                   <Icon name="plus" color="white" size={20} />
                   <Text>Mi lista</Text>

@@ -1,12 +1,18 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import posterDefault from 'Assets/img/1.jpg';
+import {useNavigation} from '@react-navigation/native';
 
 export const New = ({id, poster}) => {
+  const navigation = useNavigation();
+  const toMovie = () => navigation.navigate('Movie');
+
   return (
-    <View key={id}>
-      <Image source={posterDefault} style={styles.image} />
-    </View>
+    <TouchableOpacity onPress={toMovie}>
+      <View key={id}>
+        <Image source={posterDefault} style={styles.image} />
+      </View>
+    </TouchableOpacity>
   );
 };
 

@@ -18,7 +18,7 @@ export const Toolbar = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.right}>
-        {/* <View style={styles.borderIcon}>
+        <View style={styles.borderIcon}>
           <Icon name="information-variant" color="white" size={22} />
         </View>
         <View style={styles.borderIcon}>
@@ -26,7 +26,7 @@ export const Toolbar = () => {
         </View>
         <View style={styles.borderIcon}>
           <Icon name="information-variant" color="white" size={22} />
-        </View> */}
+        </View>
         <View style={styles.borderIcon}>
           <TouchableOpacity onPress={toPage('Explore')}>
             <Icon name="magnify" color="white" size={22} />
@@ -53,8 +53,10 @@ const styles = StyleSheet.create({
   right: {
     flex: 1.25,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'red',
   },
   borderIcon: {
     borderColor: colors.white,

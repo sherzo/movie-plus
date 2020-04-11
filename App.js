@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from 'Navigation/HomeStack';
 import ExploreStack from 'Navigation/ExploreStack';
-import Series from 'Screens/Series';
+import SeriesStack from 'Navigation/SeriesStack';
 import Downloads from 'Screens/Downloads';
 
 import {YellowBox} from 'react-native';
@@ -50,7 +50,7 @@ const App = () => {
         />
         <Tab.Screen
           name="Series"
-          component={Series}
+          component={SeriesStack}
           options={{
             title: 'Series',
             tabBarIcon: getTabBarIcon('file-document-box'),

@@ -17,7 +17,7 @@ export const Layout = ({onScroll, children, style, rest}) => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: colors.dark,
+    backgroundColor: colors.blueDark,
     minHeight: '100%',
   },
 });

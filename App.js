@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from 'Navigation/HomeStack';
-import Explore from 'Screens/Explore';
+import ExploreStack from 'Navigation/ExploreStack';
 import Series from 'Screens/Series';
 import Downloads from 'Screens/Downloads';
 
@@ -42,7 +42,7 @@ const App = () => {
         />
         <Tab.Screen
           name="Explore"
-          component={Explore}
+          component={ExploreStack}
           options={{
             title: 'Exporar',
             tabBarIcon: getTabBarIcon('magnify'),

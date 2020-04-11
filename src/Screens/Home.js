@@ -7,16 +7,13 @@ import {
   View,
 } from 'react-native';
 import {colors, isCloseToBottom} from 'Utils';
-import {Categorie, Poster, Layout, Header, Ad, New} from 'Components';
-import {
-  movies as moviesMock,
-  categories as categoriesMock,
-} from '../Utils/mock';
+import {Section, Poster, Layout, Header, Ad, New, Loading} from 'Components';
+import {movies as moviesMock, sections as sectionsMock} from '../Utils/mock';
 
 export const Home = () => {
   const [movies, setMovies] = useState(moviesMock);
-  const [news, setNews] = useState(moviesMock);
-  const [categories, _] = useState(categoriesMock);
+  const [news, _] = useState(moviesMock);
+  const [sections, setSections] = useState(sectionsMock);
   const [isLoading, setIsLoading] = useState(false);
 
   const generateRandomMovies = (length) =>
@@ -37,11 +34,7 @@ export const Home = () => {
 
   const Title = <Text style={styles.title}>Todas las películas</Text>;
 
-  const Loading = (
-    <ActivityIndicator color={colors.white} animating={isLoading} />
-  );
-
-  const itemCategorie = ({item}) => <Categorie {...item} />;
+  const itemSection = ({item}) => <Section {...item} />;
 
   const itemNew = ({item}) => <New {...item} />;
 
@@ -63,10 +56,9 @@ export const Home = () => {
             horizontal={true}
           />
         </View>
-
         <FlatList
-          data={categories}
-          renderItem={itemCategorie}
+          data={sections}
+          renderItem={itemSection}
           keyExtractor={keyExtractor}
         />
         <FlatList
@@ -75,7 +67,7 @@ export const Home = () => {
           data={movies}
           renderItem={itemMovie}
           keyExtractor={keyExtractor}
-          ListFooterComponent={Loading}
+          ListFooterComponent={<Loading isLoading={isLoading} />}
         />
       </View>
     </Layout>

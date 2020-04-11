@@ -3,7 +3,7 @@ import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
 import {Poster} from './Poster';
 import {Text} from './Text';
 
-export const Categorie = ({title, movies}) => {
+export const Section = ({title, movies}) => {
   const windowWidth = Dimensions.get('window').width;
   const width = windowWidth / 4;
 

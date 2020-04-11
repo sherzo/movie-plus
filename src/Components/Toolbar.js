@@ -55,8 +55,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: 'red',
   },
   borderIcon: {
     borderColor: colors.white,

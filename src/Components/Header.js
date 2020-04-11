@@ -21,7 +21,7 @@ export const Header = () => {
 
   const toPage = (page) => () => navigation.navigate(page);
 
-  const gradient = ['transparent', colors.dark];
+  const gradient = ['transparent', colors.blueDark];
 
   return (
     <View style={styles.container}>

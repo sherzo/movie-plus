@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, View, Dimensions} from 'react-native';
-import {Text, Layout, Categorie, Button} from 'Components';
+import {Text, Layout, Section, Button} from 'Components';
 import detail from 'Assets/img/detail3.jpg';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -76,7 +76,7 @@ const Movie = () => {
           />
         </View>
       </View>
-      <Categorie movies={movies} />
+      <Section movies={movies} />
     </Layout>
   );
 };

@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
+import {FlatList, Text, StyleSheet, View} from 'react-native';
 import {
-  FlatList,
-  Text,
-  ActivityIndicator,
-  StyleSheet,
-  View,
-} from 'react-native';
-import {colors, isCloseToBottom} from 'Utils';
+  colors,
+  keyExtractor,
+  isCloseToBottom,
+  movies as moviesMock,
+  sections as sectionsMock,
+} from 'Utils';
 import {Section, Poster, Layout, Header, Ad, New, Loading} from 'Components';
-import {movies as moviesMock, sections as sectionsMock} from '../Utils/mock';
 
 export const Home = () => {
   const [movies, setMovies] = useState(moviesMock);
@@ -39,8 +38,6 @@ export const Home = () => {
   const itemNew = ({item}) => <New {...item} />;
 
   const itemMovie = ({item}) => <Poster {...item} />;
-
-  const keyExtractor = (item) => item.id.toString();
 
   return (
     <Layout onScroll={onScroll}>

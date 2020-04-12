@@ -1,16 +1,20 @@
 import React, {useState} from 'react';
-import {Layout, Poster, StyleSheet} from 'Components';
-import {movies as seriesMock} from 'Utils';
+import {StyleSheet, FlatList} from 'react-native';
+import {Layout, Poster, Loading} from 'Components';
+import {movies as seriesMock, keyExtractor} from 'Utils';
 
 export const Series = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [series, setSeries] = useState(seriesMock);
+
+  const itemSerie = ({item}) => <Poster {...item} isSerie={true} />;
+
   return (
     <Layout style={styles.container}>
       <FlatList
         numColumns={3}
         data={series}
-        renderItem={itemMovie}
+        renderItem={itemSerie}
         keyExtractor={keyExtractor}
         ListFooterComponent={<Loading isLoading={isLoading} />}
       />

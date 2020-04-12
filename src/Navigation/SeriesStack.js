@@ -14,7 +14,15 @@ function SeriesStack() {
         headerStyle: {backgroundColor: colors.black},
       }}>
       <Stack.Screen name="Series" component={Series} />
-      <Stack.Screen name="Serie" component={Serie} />
+      <Stack.Screen
+        name="Serie"
+        component={Serie}
+        options={{
+          headerTitle: '',
+          headerTransparent: true,
+          headerTintColor: colors.white,
+        }}
+      />
     </Stack.Navigator>
   );
 }

@@ -1,20 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   StyleSheet,
   View,
   Dimensions,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
-import {Text, Layout, Section, Button} from 'Components';
+import {Text, Layout, Button} from 'Components';
 import detail from 'Assets/img/headerImage.jpg';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from 'Utils';
+import {colors, keyExtractor, movies, seasons as seasonMock} from 'Utils';
+import RNPickerSelect from 'react-native-picker-select';
 
 const heightWindow = Dimensions.get('window').height;
 const headerHeight = heightWindow / 4;
 
 const Serie = () => {
+  const [season, setTemp] = useState(1);
+  const [seasons, setTemps] = useState(seasonMock);
+  const onChangeValue = (value) => {
+    setTemp(value);
+  };
+
+  const itemCapitule = ({item}) => (
+    <View style={{flexDirection: 'row', marginBottom: 30}}>
+      <Image
+        source={detail}
+        style={{width: 100, height: 'auto', resizeMode: 'cover'}}
+      />
+      <View>
+        <Text>Ver capitulo 1 de react native {item.id}</Text>
+        <TouchableOpacity>
+          <View>
+            <Icon
+              name="download"
+              color="white"
+              size={30}
+              style={{marginLeft: 15}}
+            />
+            <Text>Descargar</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
   return (
     <Layout>
       <View style={{...styles.header, height: headerHeight}}>
@@ -47,6 +77,18 @@ const Serie = () => {
           <Text style={styles.label}>Director:</Text>
           <Text style={styles.onlyTextGray}> K.K. Barret</Text>
         </Text>
+        <RNPickerSelect
+          value={season}
+          onValueChange={onChangeValue}
+          textColor="white"
+          items={seasons}
+        />
+        <FlatList
+          data={movies}
+          keyExtractor={keyExtractor}
+          renderItem={itemCapitule}
+          // ItemSeparatorComponent={<View style={{height: 10}}></View>}
+        />
       </View>
     </Layout>
   );

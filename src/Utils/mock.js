@@ -49,3 +49,9 @@ export const categories = [
   {id: '27', name: 'News'},
   {id: '28', name: 'Pelicula TV'},
 ];
+
+export const seasons = [
+  {label: 'Temporada 1', value: 1},
+  {label: 'Temporada 2', value: 2},
+  {label: 'Temporada 3', value: 3},
+];
